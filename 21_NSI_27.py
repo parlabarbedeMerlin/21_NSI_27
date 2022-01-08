@@ -1,9 +1,3 @@
-
-from turtle import *
-from math import sqrt
-from random import randint
-from time import sleep
-
 #Exercice 1 => 00:00
 
 def moyenne(L:list)->float: #on définie la fonction et lui indique le paramètre L ainsi que son type. On indique aussi le type retourné
@@ -20,6 +14,7 @@ def moyenne(L:list)->float: #on définie la fonction et lui indique le paramètr
 
 print(moyenne([10,20,30,40,60,110])) #test de la fonction moyenne()
 
+#Exercice 1 fini en 1:45
 
 #Exercice 2 => 02:30
 
@@ -66,7 +61,7 @@ def zoomListe(liste_depart,k):
             liste_zoom.append(elt) #on l'ajoute fois k
     return liste_zoom #on renvoie la ligne zoomé par k
 
-# 07:30
+# au bout de 07:30
 
 def zoomDessin(grille,k):
     '''renvoie une grille où les lignes sont zoomées k fois
@@ -82,18 +77,18 @@ def zoomDessin(grille,k):
             grille_zoom.append(liste_zoom) #on ajoute fois k la liste zoomé
     return grille_zoom #on renvoie la grille (tableau) zoomé
 
-# 10:12
+#Au bout de 10:12
 
 affiche(coeur)
 
 affiche(zoomDessin(coeur,3))
 
-#le code à été fini en 12 minutes et 26 secondes
+#le code à été fini au bout de 12 minutes et 26 secondes
 
-# le code a été commenté en 29 minutes et 46 secondes
+# le code a été fini d'être commenté au bout de 29 minutes et 46 secondes
 
 
-# Bonus
+# Bonus (NECESSITE TKINTER)
 
 def afficher_couleur(dessin,color = "WHITE"):
     """
@@ -127,44 +122,38 @@ def afficher_couleur(dessin,color = "WHITE"):
 
 def showonwin(dessin):
     """
-    créé une fenètre et affiche le motif dans une grille
+    print the motif of dessin on grid on window using tkinter
+    :param dessin: list of list of int
+    :return: None
     """
+    from tkinter import Tk, Canvas, Frame, BOTH
 
-    # on crée la fenêtre
-    setup(width=1.5*sqrt(len(dessin))*100, height=1.5*sqrt(len(dessin))*100)
-    title("Motif")
-    hideturtle()
-    speed(0)
-    penup()
-    goto(-1.5*sqrt(len(dessin))*100/2, -1.5*sqrt(len(dessin))*100/2)
-    pendown()
+    # create a window
+    root = Tk()
+    root.title("Dessin")
+    root.geometry("800x800")
 
-    # on affiche le motif
-    for ligne in dessin:
-        for elt in ligne:
-            if elt == 1:
-                color(randint(0, 255), randint(0, 255), randint(0, 255))
-                begin_fill()
-                forward(100)
-                left(90)
-                forward(100)
-                left(90)
-                forward(100)
-                left(90)
-                forward(100)
-                end_fill()
+    # create a canvas
+    canvas = Canvas(root, width=800, height=800)
+    canvas.pack(fill=BOTH, expand=1)
+
+    # create a frame
+    frame = Frame(root)
+    frame.pack()
+
+    # create a grid
+    for i in range(len(dessin)):
+        for j in range(len(dessin[i])):
+            if dessin[i][j] == 1:
+                # create a rectangle
+                canvas.create_rectangle(j * 20, i * 20, (j + 1) * 20, (i + 1) * 20, fill="black")
             else:
-                forward(100)
-        penup()
-        goto(0, 0)
-        pendown()
-        forward(100)
-        penup()
-        goto(0, 0)
-        pendown()
+                # create a rectangle
+                canvas.create_rectangle(j * 20, i * 20, (j + 1) * 20, (i + 1) * 20, fill="white", outline="black")
 
-    # on attend que l'utilisateur ferme la fenêtre
-    done()
+    # show window
+    root.mainloop()
 
-showonwin(coeur)
+showonwin(zoomDessin(coeur,3))
 
+# le bonus a été fini au bout de 1h 2 minutes et 23 secondes
