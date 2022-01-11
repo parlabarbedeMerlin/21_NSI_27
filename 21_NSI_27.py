@@ -1,3 +1,6 @@
+from tkinter import Tk, Canvas, Frame, BOTH
+
+
 # Exercice 1 => 00:00
 
 # on définie la fonction et lui indique le paramètre L ainsi que son type. On indique aussi le type retourné
@@ -130,18 +133,18 @@ def afficher_couleur(dessin, color="WHITE"):
     print("\u001b[0m")
 
 
-def showonwin(dessin):
+# create a window
+root = Tk()
+root.title("Dessin")
+root.geometry("800x800")
+
+
+def showonwin(dessin, root):
     """
     print the motif of dessin on grid on window using tkinter
     :param dessin: list of list of int
     :return: None
     """
-    from tkinter import Tk, Canvas, Frame, BOTH
-
-    # create a window
-    root = Tk()
-    root.title("Dessin")
-    root.geometry("800x800")
 
     # create a canvas
     canvas = Canvas(root, width=800, height=800)
@@ -165,6 +168,18 @@ def showonwin(dessin):
     root.mainloop()
 
 
-showonwin(zoomdessin(coeur, 3))
+showonwin(zoomdessin(coeur, 3), root)
+
 
 # le bonus a été fini au bout de 1h 2 minutes et 23 secondes
+
+# closewin func
+def closewin(win):
+    """
+    close the window
+    :return: None
+    """
+    win.destroy()
+    win.quit()
+
+
