@@ -3,10 +3,10 @@ from tkinter import Tk, Canvas, Frame, BOTH
 
 # Exercice 1 => 00:00
 
-# on définie la fonction et lui indique le paramètre L ainsi que son type. On indique aussi le type retourné
+# On définit la fonction et lui indique le paramètre L ainsi que son type. On indique aussi le type retourné
 def moyenne(liste: list) -> float:
     """
-    renvoie la moyenne d'une liste d'entier
+    Renvoie la moyenne d'une liste d'entier
     :param liste: liste d'entiers
     :return: float
     """
@@ -21,8 +21,9 @@ def moyenne(liste: list) -> float:
 
     return total / len(liste)  # on renvoie la moyenne
 
+print(moyenne([10, 20, 30, 40, 60, 110]))  # on affiche la moyenne de la liste
 
-print(moyenne([10, 20, 30, 40, 60, 110]))  # test de la fonction moyenne()
+# test de la fonction moyenne()
 
 # Exercice 1 fini en 1:45
 
@@ -52,7 +53,7 @@ def affiche(dessin):
     for ligne in dessin:
         for col in ligne:
             if col == 1:
-                print(" *", end="")
+                print(" *", end="")  # on affiche un "*" avec un espace après pour ne pas avoir le dessin étiré
             else:
                 print("  ", end="")
         print()
@@ -139,19 +140,20 @@ root.title("Dessin")
 root.geometry("800x800")
 
 
-def showonwin(dessin, root):
+def showonwin(dessin, win):
     """
     print the motif of dessin on grid on window using tkinter
+    :param win: window
     :param dessin: list of list of int
     :return: None
     """
 
     # create a canvas
-    canvas = Canvas(root, width=800, height=800)
+    canvas = Canvas(win, width=800, height=800)
     canvas.pack(fill=BOTH, expand=1)
 
     # create a frame
-    frame = Frame(root)
+    frame = Frame(win)
     frame.pack()
 
     # create a grid
@@ -165,10 +167,10 @@ def showonwin(dessin, root):
                 canvas.create_rectangle(j * 20, i * 20, (j + 1) * 20, (i + 1) * 20, fill="white", outline="black")
 
     # show window
-    root.mainloop()
+    win.mainloop()
 
 
-showonwin(zoomdessin(coeur, 3), root)
+showonwin(coeur, root)
 
 
 # le bonus a été fini au bout de 1h 2 minutes et 23 secondes
@@ -181,5 +183,3 @@ def closewin(win):
     """
     win.destroy()
     win.quit()
-
-
